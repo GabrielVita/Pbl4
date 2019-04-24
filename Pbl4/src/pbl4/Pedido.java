@@ -16,7 +16,34 @@ public class Pedido {
     private ArrayList<Produto> cupom;
     private Dias dia;
     private double valorTotal;
+    private int quantFrios=0;
+    private int quantDoce=0;
+    private int quantPaozinho=0;
     //private int tempoEntrega;
+
+    public int getQuantFrios() {
+        return quantFrios;
+    }
+
+    public void setQuantFrios(int quantFrios) {
+        this.quantFrios = quantFrios;
+    }
+
+    public int getQuantDoce() {
+        return quantDoce;
+    }
+
+    public void setQuantDoce(int quantDoce) {
+        this.quantDoce = quantDoce;
+    }
+
+    public int getQuantPaozinho() {
+        return quantPaozinho;
+    }
+
+    public void setQuantPaozinho(int quantPaozinho) {
+        this.quantPaozinho = quantPaozinho;
+    }
     
 
     public String getCliente() {
@@ -72,9 +99,6 @@ public class Pedido {
     }
     public void verifProdutos(){
         int j=0;
-        int quantFrios=0;
-        int quantDoce=0;
-        int quantPaozinho=0;
         while(j<cupom.size()){
             if(cupom.get(j) instanceof Frios){
                 quantFrios++;
@@ -103,7 +127,7 @@ public class Pedido {
                 }else{
                     tempoTotal += 2;
                 }
-            }else if(cupom.get(j) instanceof Paozinho){
+            }else if(cupom.get(j) instanceof Doces){
                 if(dia == Dias.DOMINGO || dia == Dias.SABADO){
                     tempoTotal += 6;
                 }else{
@@ -113,5 +137,10 @@ public class Pedido {
             j++;
         }
         return tempoTotal;
+    }
+    public Pedido(String cliente, Dias dia){
+        this.cliente = cliente;
+        this.dia=dia;
+        this.cupom = new ArrayList();
     }
 }
